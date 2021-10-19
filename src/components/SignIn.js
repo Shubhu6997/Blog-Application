@@ -2,9 +2,7 @@ import React  from "react";
 import SignInBackground from "../img/SignIn-Background.jpg";
 import "../css/SignIn.css";
 class SignIn extends React.Component{
-    constructor(props){
-        super(props);
-    }
+    
 
     render(){
         return(

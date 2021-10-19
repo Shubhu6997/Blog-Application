@@ -3,9 +3,7 @@ import "../css/LoginPage.css";
 import LoginBackground from "../img/Login-Background.jpg";
 
 class Login extends React.Component{
-    constructor(props){
-        super(props);
-    }
+  
 
     render(){
         return(
@@ -28,7 +26,7 @@ class Login extends React.Component{
                         </form>
                     </div>
                     <div className = "">
-                        <img src = {LoginBackground} alt = "Login page Background image" />
+                        <img src = {LoginBackground} alt = "Login page Background" />
                     </div>
                     
                 </div>

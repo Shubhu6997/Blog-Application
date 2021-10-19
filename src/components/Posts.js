@@ -95,8 +95,7 @@ class Posts extends Component{
                     return (
                     <div>
                         <div className = "m-3">
-                        <button className = "AddPostButton" type = "button" 
-                        className = "btn btn-info"
+                        <button className = "AddPostButton btn btn-info" type = "button" 
                         onClick = {()=>this.addPost("addpost")}>AddPost</button>
 
                             <table className = "table table-striped table-bordered mt-2">
@@ -150,6 +149,7 @@ class Posts extends Component{
                             action = "updatepost"
                             />
                     )
+                default : return(<></>)
             }})()} 
                 
                 

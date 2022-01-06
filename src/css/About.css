@@ -1,0 +1,9 @@
+.profile_pic{
+    width: 25%;
+    height: 25%;
+    border-radius: 50%;
+}
+
+.about_container{
+    display: flex;
+}

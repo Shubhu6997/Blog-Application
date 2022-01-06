@@ -1,5 +1,7 @@
 import React from "react";
 import axios from "axios";
+import "../css/AddPost.css";
+import { Redirect } from "react-router";
 
 class AddPost extends React.Component{
     constructor(props){
@@ -7,24 +9,25 @@ class AddPost extends React.Component{
         this.state={
             posts : [],
             id : this.props.id,
-            userId : this.props.userId,
             title : this.props.title,
             body : this.props.body,
-            action : this.props.action
+            action : this.props.action,
+            show : false
         }
     }
 
+
     updatePost = async() =>{
         try{
-            const {data : post} = await axios.put(
-                `https://posts-app-backend.herokuapp.com/posts/${this.state.id}`,{
-                 userId : this.state.userId,
+            const {data} = await axios.put(
+                `http://localhost:3001/posts/${this.state.id}`,{
+                 userId : localStorage.getItem("userId"),
                  title : this.state.title,
                  body : this.state.body
              });
-             console.log(post);
+             console.log(data);
              this.setState({posts : [], userId : "", title : "", body : ""});
-             alert("Post Updated Successfully");
+             alert(data);
              
          }catch(err){
              console.log("Error while updating post", err);
@@ -33,22 +36,23 @@ class AddPost extends React.Component{
     }
 
     createPost = async()=>{
-        try{
-                await axios.post(
-               "https://posts-app-backend.herokuapp.com/posts",{
-                userId : this.state.userId,
-                title : this.state.title,
-                body : this.state.body
-            });
-            //console.log(res);
-           
-            this.setState({posts : [], userId : "", title : "", body : ""});
-            alert("Created Post Successfully");
-            
-        }catch(err){
-            console.log("Error while creating post",err);
-        }
         
+        try{
+            let data = await axios.post(
+            "http://localhost:3001/posts",{
+            userId : localStorage.getItem("userId"),
+            title : this.state.title,
+            body : this.state.body
+        });
+        console.log(data);
+        
+        this.setState({posts : [], userId : "", title : "", body : ""});
+        alert("Created Post Successfully");
+        
+        }catch(err){
+        console.log("Error while creating post",err);
+    }
+         
     }
 
     handleChange = ({target :{name, value}}) =>{
@@ -65,22 +69,19 @@ class AddPost extends React.Component{
 
     render(){
     
+        if(!localStorage.getItem("username")){
+            this.setState({show : false});
+            alert("Please login to add post");
+            return <Redirect to = "/login"/>
+        }
+        
         return(
             <div className = "container-fluid">
-                <h2>AddPost</h2>
-                <div>
+                <div className = "addpost-container">
                     <form onSubmit = {this.handleSubmit}>
                             <div>
-                                <label htmlFor = "userId">UserId</label><br/>
-                                <input type = "number" 
-                                name = "userId"
-                                value = {this.state.userId}
-                                onChange = {this.handleChange}
-                                />
-                            </div>
-                            <div>
                                 <label htmlFor = "title">Title</label><br/>
-                                <input type = "text"
+                                <textarea className = "inputTitle" 
                                 name = "title"
                                 value = {this.state.title}
                                 onChange = {this.handleChange}
@@ -88,13 +89,13 @@ class AddPost extends React.Component{
                             </div>
                             <div>  
                                 <label htmlFor = "body">Body</label><br/>
-                                <textarea cols = "50" rows= "5"
+                                <textarea className = "inputBody"
                                 name = "body"
                                 value = {this.state.body}
                                 onChange = {this.handleChange}
                                 />
                             </div>
-                                <button className = "btn-success" type = "submit">Add</button>
+                                <button className = "btn-success" type = "submit">Submit</button>
                             </form>
                     </div>
             </div>

@@ -1,12 +1,21 @@
-.LoginPage{
+.addpost-container{
     background-color: whitesmoke;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    width: 70%;
+    width: 80%;
     height: auto;
-    justify-content: center;
-    margin-top: 10%;
+    margin-top: 20px;
     padding: 10px;
     margin-left: auto;
     margin-right: auto;
-    
+}
+
+.inputTitle{
+    width: 80%;
+    height: 25px;
+ 
+}
+
+.inputBody{
+    width: 80%;
+    height: 200px;
 }

@@ -1,6 +1,20 @@
-.homepage{
-   width: 40%;
-   height: auto;
+.home{
+   display: flex;
+   flex-direction: column;
   
+}
+
+.homepage{
+   display: block;
+   width: 40vw;
+   height: auto;
+   margin-left: auto;
+   margin-right: auto;
+   padding: 10px;
+
+}
+
+.home-title{
+   font-size: 4vw;
 }
 

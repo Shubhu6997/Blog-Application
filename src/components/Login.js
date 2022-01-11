@@ -1,6 +1,11 @@
 import React  from "react";
 import "../css/LoginPage.css";
 import axios from "axios";
+import TextField from '@mui/material/TextField';
+import { Link } from "react-router-dom";
+import Button from '@mui/material/Button';
+import { Alert } from "bootstrap";
+
 
 class Login extends React.Component{
     constructor(props){
@@ -30,11 +35,9 @@ class Login extends React.Component{
                 localStorage.removeItem("username");
                 localStorage.removeItem("userId");
                 localStorage.removeItem("name");
-            }
-               
+            }    
 
             this.setState({email : "", password : ""});
-           
             alert(data.message);
 
         }catch(error){
@@ -61,21 +64,36 @@ class Login extends React.Component{
                         <h3>Login Page</h3>
                         <form className = "" onSubmit = {this.hanldeSubmit}>
                             <div className = "p-1">
-                                <label htmlFor = "email">Email</label><br/>
-                                <input type = "text" 
+                                <TextField 
+                                variant = "outlined"
+                                label="Email"
                                 name = "email"
+                                required
                                 value = {this.state.email}
                                 onChange = {this.handleChange}/>
                             </div>
                             <div className = "p-1">
-                                <label htmlFor = "password">Password</label><br/>
-                                <input type = "password" 
+                                <TextField 
+                                variant = "outlined"
+                                label = "Password"
+                                type = "password" 
                                 name = "password"
+                                required
                                 value = {this.state.password}
                                 onChange = {this.handleChange} />
                             </div>
                             <div className = "p-1">
-                                <button className = "btn btn-success btn-sm" type = "submit">Login</button>
+                                <Button 
+                                variant = "contained"
+                                size = "small"
+                                type = "submit"
+                                style={{
+                                    width : 225
+                                }}
+                                >Login</Button>
+                            </div>
+                            <div>
+                                <Link to="/sign-in">New User? Please click here to register.</Link>
                             </div>
                         </form>
                     </div>  

@@ -1,6 +1,11 @@
 import React  from "react";
 import "../css/SignIn.css";
 import axios from "axios";
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import { Redirect } from "react-router-dom";
+
+
 class SignIn extends React.Component{
     
     constructor(props){
@@ -16,6 +21,7 @@ class SignIn extends React.Component{
 
     registerUser = async() =>{
         try{
+           
             let {data} = await axios.post("http://localhost:3001/users/register",{
                 name : this.state.name,
                 email : this.state.email,
@@ -26,6 +32,9 @@ class SignIn extends React.Component{
             console.log(data);
             this.setState({name : "", email : "", password : "", mobileNo : "", company : ""});
             alert(data);
+           
+           
+            
         }catch(error){
             console.log("Error while registering user : ", error);
         }
@@ -41,52 +50,74 @@ class SignIn extends React.Component{
         event.preventDefault();
         this.registerUser();
         console.log(this.state);
-
+   
     }
 
     render(){
+
+       
         return(
             <div className = "container-fluid ">
                 <div className = "SignInPage d-flex">
                     <div>
+                        <h3>Registration Page</h3>
                         <form onSubmit = {this.handleSubmit}>
                             <div className = "p-1">
-                                <label htmlFor = "name">Name</label><br/>
-                                <input type = "text" 
+                                <TextField
+                                variant = "outlined"
+                                label = "Name"
+                                type = "text" 
                                 name = "name"
+                                required
                                 value = {this.state.name}
                                 onChange = {this.handlechange}/>
                             </div>
                             <div className = "p-1">
-                                <label htmlFor = "email">Email</label><br/>
-                                <input type = "email"
+                            <TextField
+                                variant = "outlined"
+                                label = "Email"
+                                type = "email"
                                 name = "email"
+                                required
                                 value = {this.state.email}
                                 onChange = {this.handlechange}/>
                             </div>
                             <div className = "p-1">
-                                <label htmlFor = "password">password</label><br/>
-                                <input type = "password" 
+                                <TextField
+                                variant = "outlined"
+                                label = "Password" type = "password" 
                                 name = "password"
+                                required
                                 value = {this.state.password}
                                 onChange = {this.handlechange}/>
                             </div>
                             <div className = "p-1">
-                                <label htmlFor = "mobileNo">Mobile Number</label><br/>
-                                <input type = "tel" 
+                                <TextField
+                                variant = "outlined"
+                                label = "Mobile Number" type = "tel" 
                                 name = "mobileNo"
+                                required
                                 values = {this.state.mobileno}
                                 onChange = {this.handlechange}/>
                             </div>
                             <div className = "p-1">
-                                <label htmlFor = "company">Company</label><br/>
-                                <input type = "text" 
+                                <TextField
+                                variant = "outlined"
+                                label = "Company" type = "text" 
                                 name = "company"
+                                required
                                 value = {this.state.company}
                                 onChange = {this.handlechange}/>
                             </div>
                             <div className = "p-1">
-                                <button className = "btn btn-success" type = "submit">Sign up</button>
+                                <Button
+                                variant="contained"
+                                size="small"
+                                type = "submit"
+                                style={{
+                                    width : 225
+                                }}
+                                >Sign up</Button>
                             </div>        
                         </form>
                     </div>

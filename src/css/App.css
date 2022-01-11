@@ -3,7 +3,19 @@ div a{
  
 }
 
-.tabs{
-    font-size: 2.5vh;
-    text-decoration: none;
+.navbar-top{
+    display: flex;
+    padding: 10px;
 }
+
+.tab-name{
+    padding: 10px;
+    padding-left: 20px;
+
+}
+
+.tab-name:hover{
+    color: orange;
+
+}
+

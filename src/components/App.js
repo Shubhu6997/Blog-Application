@@ -13,24 +13,21 @@ function App() {
   localStorage.removeItem("userId");
 
   return (
-    <div className = "container-fluid p-0">
+    <div className = "container">
         <BrowserRouter>
-          <div className = "d-flex flex-row app-container">
-            <div className = "d-flex flex-row bg-success flex-fill">
-                <div className = "p-3 flex-fill">
-                  <Link to = "/"><h2 className = "text-white tabs">Home</h2></Link>
+          <div className = "navbar-top">
+                <div className = "">
+                  <Link to = "/"><h5 className = "tab-name">Home</h5></Link>
                 </div>
-                <div className = "p-3 flex-fill">
-                  <Link to = "/posts"><h5 className = "text-white tabs">All Posts</h5></Link>
+                <div className = "">
+                  <Link to = "/posts"><h5 className = "tab-name">All Posts</h5></Link>
                 </div>
-                <div className = "p-3 flex-fill">
-                  <Link to = "/createPost"><h5 className = "text-white tabs">Create Post</h5></Link>
+                <div className = "">
+                  <Link to = "/createPost"><h5 className = "tab-name">Create Post</h5></Link>
                 </div>
-                <div className = "p-3 flex-fill">
-                  <Link to = "/about"><h5 className = "text-white tabs">About US</h5></Link>
+                <div className = "">
+                  <Link to = "/about"><h5 className = "tab-name">About US</h5></Link>
                 </div>
-
-            </div>
           </div>
 
           <Switch>

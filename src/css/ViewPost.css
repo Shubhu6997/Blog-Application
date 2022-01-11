@@ -1,9 +1,6 @@
-.Comments-Section{
-    background-color: whitesmoke;
-    padding: 10px;
+
+.comment-box,
+.add-comment-button{
+    padding : 10px
 }
 
-.comment-textarea{
-    width: 75% ;
-    height: 75px;
-}

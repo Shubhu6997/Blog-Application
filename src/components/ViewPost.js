@@ -1,6 +1,11 @@
+import { TextField } from "@mui/material";
 import axios from "axios";
 import React from "react";
 import "../css/ViewPost.css";
+import { Button } from "@mui/material";
+import  DeleteIcon  from "@material-ui/icons/Delete";
+import { Divider } from "@mui/material";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 
 class ViewPost extends React.Component{
@@ -84,31 +89,39 @@ class ViewPost extends React.Component{
                     <p>{this.props.body}</p>
                 </div>
                 <div className = "Comments-Section">
-                <h3>Comments</h3>
-
+                
+                <h4>Comments</h4>
                 <form onSubmit = {this.handleSubmit}>
-                <div className = "AddComment">
-                    <textarea className = "comment-textarea"
-                    placeholder = "Write your comment"
+                <div className = "comment-box">
+                    <TextField 
+                    label = "Write your comment here..."
+                    multiline
+                    rows={4}
                     value = {this.state.comment}
                     onChange = {this.handleChange}
-                    />
-                    <br/>
-                    <button type = "submit" className = "btn btn-primary btn-sm">Add</button>
+                    style = {{
+                        width : 750
+                    }}
+                    />    
+                </div>
+                <div className="add-comment-button">
+                    <Button
+                     type = "submit" 
+                     variant="contained"
+                    >Add Comment</Button>
                 </div>
                 </form>
                 {this.state.comments.map((comment)=>{
                     return(
                         <div key = {comment.id}>
-                            <p><b>{comment.name}</b>
-                            <button className = "btn btn-danger btn-sm"
+                           
+                            <p><AccountCircleIcon/><b>{comment.name}</b>
+                            <button
                              onClick = {()=>{this.deleteComment(comment.id)}}>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
-                            <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
-                            </svg>
+                                 <DeleteIcon/>
                             </button></p>
                             <p>{comment.body}</p>
+                            <Divider/>
                         </div>
                     )
                 })}

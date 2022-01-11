@@ -2,6 +2,9 @@ import React from "react";
 import axios from "axios";
 import "../css/AddPost.css";
 import { Redirect } from "react-router";
+import { TextField } from "@mui/material";
+import Button from '@mui/material/Button';
+import SendIcon from '@mui/icons-material/Send';
 
 class AddPost extends React.Component{
     constructor(props){
@@ -76,28 +79,43 @@ class AddPost extends React.Component{
         }
         
         return(
-            <div className = "container-fluid">
-                <div className = "addpost-container">
-                    <form onSubmit = {this.handleSubmit}>
-                            <div>
-                                <label htmlFor = "title">Title</label><br/>
-                                <textarea className = "inputTitle" 
-                                name = "title"
-                                value = {this.state.title}
-                                onChange = {this.handleChange}
-                                />
-                            </div>
-                            <div>  
-                                <label htmlFor = "body">Body</label><br/>
-                                <textarea className = "inputBody"
-                                name = "body"
-                                value = {this.state.body}
-                                onChange = {this.handleChange}
-                                />
-                            </div>
-                                <button className = "btn-success" type = "submit">Submit</button>
-                            </form>
+            <div className = "addpost-container container">
+                <form onSubmit = {this.handleSubmit}>
+                    <div>
+                        <TextField 
+                        label = "Title"
+                        multiline
+                        maxRows={2}
+                        name = "title"
+                        value = {this.state.title}
+                        onChange = {this.handleChange}
+                        style = {{
+                            width : 750,
+                            padding : "10px"
+                        }}
+                        />
                     </div>
+                    <div> 
+                        <TextField 
+                        label = "Body"
+                        multiline
+                        rows={8}
+                        name = "body"
+                        value = {this.state.body}
+                        onChange = {this.handleChange}
+                        style = {{
+                            width : 750,
+                            padding : "10px"
+                        }}
+                        />
+                    </div>
+                    <div className="add-post-button">
+                        <Button
+                            variant="contained"
+                            endIcon = {<SendIcon/>}
+                        >Add Post</Button>
+                    </div>        
+                </form>
             </div>
         )
     }

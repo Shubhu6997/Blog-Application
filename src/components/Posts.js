@@ -5,7 +5,6 @@ import AddPost from "./AddPost";
 import "../css/Posts.css"
 import { Link } from "react-router-dom";
 import  DeleteIcon  from "@material-ui/icons/Delete";
-import PreviewIcon from '@mui/icons-material/Preview';
 import EditTwoToneIcon from '@mui/icons-material/EditTwoTone';
 import { IconButton } from "@mui/material";
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';

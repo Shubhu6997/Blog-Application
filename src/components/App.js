@@ -17,16 +17,16 @@ function App() {
         <BrowserRouter>
           <div className = "navbar-top">
                 <div className = "">
-                  <Link to = "/"><h5 className = "tab-name">Home</h5></Link>
+                  <Link to = "/"><h6 className = "tab-name">Home</h6></Link>
                 </div>
                 <div className = "">
-                  <Link to = "/posts"><h5 className = "tab-name">All Posts</h5></Link>
+                  <Link to = "/posts"><h6 className = "tab-name">All Posts</h6></Link>
                 </div>
                 <div className = "">
-                  <Link to = "/createPost"><h5 className = "tab-name">Create Post</h5></Link>
+                  <Link to = "/createPost"><h6 className = "tab-name">Create Post</h6></Link>
                 </div>
                 <div className = "">
-                  <Link to = "/about"><h5 className = "tab-name">About US</h5></Link>
+                  <Link to = "/about"><h6 className = "tab-name">About US</h6></Link>
                 </div>
           </div>
 

@@ -6,6 +6,7 @@ import { Button } from "@mui/material";
 import  DeleteIcon  from "@material-ui/icons/Delete";
 import { Divider } from "@mui/material";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { IconButton } from "@mui/material";
 
 
 class ViewPost extends React.Component{
@@ -24,7 +25,7 @@ class ViewPost extends React.Component{
     getComments = async()=>{
         try {
             const {data} = await axios.get(
-                    `http://localhost:3001/comments/${this.props.id}`);
+                    `http://${process.env.REACT_APP_HOST_NAME}/comments/${this.props.id}`);
             this.setState({comments : [...data]})
             console.log(this.state.comments);
             console.log(this.props);
@@ -36,7 +37,7 @@ class ViewPost extends React.Component{
 
     addComment = async()=>{
         try{
-            const {data} = await axios.post(`http://localhost:3001/comments`,{
+            const {data} = await axios.post(`http://${process.env.REACT_APP_HOST_NAME}/comments`,{
              postId : Number(localStorage.getItem("postId")),
              name : localStorage.getItem("name"),
              email : localStorage.getItem("username"),
@@ -54,7 +55,7 @@ class ViewPost extends React.Component{
     deleteComment = async(id)=>{
         try{
             console.log("deletComments method is called", id);
-            let {data} = await axios.delete(`http://localhost:3001/comments/${id}`,{
+            let {data} = await axios.delete(`http://${process.env.REACT_APP_HOST_NAME}/comments/${id}`,{
                 data :{ username : localStorage.getItem("username")}
              });
             console.log(data);
@@ -114,12 +115,11 @@ class ViewPost extends React.Component{
                 {this.state.comments.map((comment)=>{
                     return(
                         <div key = {comment.id}>
-                           
                             <p><AccountCircleIcon/><b>{comment.name}</b>
-                            <button
+                            <IconButton
                              onClick = {()=>{this.deleteComment(comment.id)}}>
                                  <DeleteIcon/>
-                            </button></p>
+                            </IconButton></p>
                             <p>{comment.body}</p>
                             <Divider/>
                         </div>

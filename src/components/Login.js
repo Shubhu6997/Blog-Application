@@ -19,7 +19,7 @@ class Login extends React.Component{
     loginUser = async() =>{
         try{
             console.log("login method called")
-            let {data} = await axios.post("http://localhost:3001/users/login",{
+            let {data} = await axios.post(`http://${process.env.REACT_APP_HOST_NAME}/users/login`,{
                 email : this.state.email,
                 password : this.state.password,
             });

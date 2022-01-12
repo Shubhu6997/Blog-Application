@@ -25,7 +25,7 @@ class ViewPost extends React.Component{
     getComments = async()=>{
         try {
             const {data} = await axios.get(
-                    `http://${process.env.REACT_APP_HOST_NAME}/comments/${this.props.id}`);
+                    `https://${process.env.REACT_APP_HOST_NAME}/comments/${this.props.id}`);
             this.setState({comments : [...data]})
             console.log(this.state.comments);
             console.log(this.props);
@@ -37,7 +37,7 @@ class ViewPost extends React.Component{
 
     addComment = async()=>{
         try{
-            const {data} = await axios.post(`http://${process.env.REACT_APP_HOST_NAME}/comments`,{
+            const {data} = await axios.post(`https://${process.env.REACT_APP_HOST_NAME}/comments`,{
              postId : Number(localStorage.getItem("postId")),
              name : localStorage.getItem("name"),
              email : localStorage.getItem("username"),
@@ -54,8 +54,8 @@ class ViewPost extends React.Component{
 
     deleteComment = async(id)=>{
         try{
-            console.log("deletComments method is called", id);
-            let {data} = await axios.delete(`http://${process.env.REACT_APP_HOST_NAME}/comments/${id}`,{
+            console.log("delete Comments method is called", id);
+            let {data} = await axios.delete(`https://${process.env.REACT_APP_HOST_NAME}/comments/${id}`,{
                 data :{ username : localStorage.getItem("username")}
              });
             console.log(data);

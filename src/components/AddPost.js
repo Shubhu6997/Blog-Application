@@ -23,7 +23,7 @@ class AddPost extends React.Component{
     updatePost = async() =>{
         try{
             const {data} = await axios.put(
-                `http://${process.env.REACT_APP_HOST_NAME}/posts/${this.state.id}`,{
+                `https://${process.env.REACT_APP_HOST_NAME}/posts/${this.state.id}`,{
                  userId : localStorage.getItem("userId"),
                  title : this.state.title,
                  body : this.state.body
@@ -42,7 +42,7 @@ class AddPost extends React.Component{
         
         try{
             let data = await axios.post(
-            `http://${process.env.REACT_APP_HOST_NAME}/posts`,{
+            `https://${process.env.REACT_APP_HOST_NAME}/posts`,{
             userId : localStorage.getItem("userId"),
             title : this.state.title,
             body : this.state.body

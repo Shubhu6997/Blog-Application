@@ -22,7 +22,7 @@ class SignIn extends React.Component{
     registerUser = async() =>{
         try{
            
-            let {data} = await axios.post(`http://${process.env.REACT_APP_HOST_NAME}/users/register`,{
+            let {data} = await axios.post(`https://${process.env.REACT_APP_HOST_NAME}/users/register`,{
                 name : this.state.name,
                 email : this.state.email,
                 password : this.state.password,

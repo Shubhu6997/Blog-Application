@@ -57,7 +57,7 @@ class Posts extends Component{
         try{
             this.setState({posts : []})
             const {data} = await axios.get(
-                `http://${process.env.REACT_APP_HOST_NAME}/posts`);
+                `https://${process.env.REACT_APP_HOST_NAME}/posts`);
             this.setState({posts : data});
             console.log(data);
 
@@ -72,7 +72,7 @@ class Posts extends Component{
         if(res)
         {
             try{
-                let {data} = await axios.delete(`http://${process.env.REACT_APP_HOST_NAME}/posts/${postId}`,{
+                let {data} = await axios.delete(`https://${process.env.REACT_APP_HOST_NAME}/posts/${postId}`,{
                    data :{ userId : localStorage.getItem("userId")}
                 });
                 this.setState({posts : []});

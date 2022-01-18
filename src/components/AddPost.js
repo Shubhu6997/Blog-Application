@@ -75,7 +75,7 @@ class AddPost extends React.Component{
         if(!localStorage.getItem("username")){
             this.setState({show : false});
             alert("Please login to add post");
-            return <Redirect to = "/login"/>
+            return <Redirect to = "/"/>
         }
         
         return(

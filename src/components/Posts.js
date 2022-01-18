@@ -160,8 +160,8 @@ class Posts extends Component{
                         body = {this.state.body} />
                     )
                 case 'addpost' : 
-                    return(<AddPost action = "addpost"/>
-                    )
+                    return(<AddPost action = "addpost"/>)
+                    
                 case 'updatepost' : 
                     return(<AddPost id = {this.state.id} 
                             userId = {this.state.userId} 

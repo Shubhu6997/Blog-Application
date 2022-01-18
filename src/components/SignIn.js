@@ -1,4 +1,4 @@
-import React  from "react";
+import React, {useState}  from "react";
 import "../css/SignIn.css";
 import axios from "axios";
 import TextField from '@mui/material/TextField';
@@ -6,62 +6,60 @@ import Button from '@mui/material/Button';
 
 
 
-class SignIn extends React.Component{
+function SignIn() {
     
-    constructor(props){
-        super(props);
-        this.state = {
+        const [userDetails, setUserDetails] = useState({
             name : "",
             email : "",
             password : "",
             mobileNo : "",
             company : ""
-        }
-    }
+        })
 
-    registerUser = async() =>{
+    const registerUser = async() =>{
         try{
            
             let {data} = await axios.post(`https://${process.env.REACT_APP_HOST_NAME}/users/register`,{
-                name : this.state.name,
-                email : this.state.email,
-                password : this.state.password,
-                mobileNo : this.state.mobileNo,
-                company : this.state.company
+                name : userDetails.name,
+                email : userDetails.email,
+                password : userDetails.password,
+                mobileNo : userDetails.mobileNo,
+                company : userDetails.company
             });
+
             console.log(data);
-            this.setState({name : "", email : "", password : "", mobileNo : "", company : ""});
+            setUserDetails({name : "", email : "", password : "", mobileNo : "", company : ""});
             alert(data);
-           
-           
-            
+             
         }catch(error){
             console.log("Error while registering user : ", error);
         }
        
     }
 
-    handlechange = ({target :{name, value}}) =>{
-        this.setState({[name] : value})
+    const handlechange = (event) =>{
+        setUserDetails({
+            ...userDetails,
+            [event.target.name] : event.target.value
+        })
        
     }
 
-    handleSubmit = (event) =>{
+    const handleSubmit = (event) =>{
         event.preventDefault();
-        this.registerUser();
-        console.log(this.state);
+        registerUser();
+        console.log(userDetails);
    
     }
 
-    render(){
-
+   
        
         return(
             <div className = "container-fluid ">
                 <div className = "SignInPage d-flex">
                     <div>
-                        <h3>Registration Page</h3>
-                        <form onSubmit = {this.handleSubmit}>
+                        <h3>Sign In</h3>
+                        <form onSubmit = {handleSubmit}>
                             <div className = "p-1">
                                 <TextField
                                 variant = "outlined"
@@ -69,8 +67,8 @@ class SignIn extends React.Component{
                                 type = "text" 
                                 name = "name"
                                 required
-                                value = {this.state.name}
-                                onChange = {this.handlechange}/>
+                                value = {userDetails.name}
+                                onChange = {handlechange}/>
                             </div>
                             <div className = "p-1">
                             <TextField
@@ -79,8 +77,8 @@ class SignIn extends React.Component{
                                 type = "email"
                                 name = "email"
                                 required
-                                value = {this.state.email}
-                                onChange = {this.handlechange}/>
+                                value = {userDetails.email}
+                                onChange = {handlechange}/>
                             </div>
                             <div className = "p-1">
                                 <TextField
@@ -88,8 +86,8 @@ class SignIn extends React.Component{
                                 label = "Password" type = "password" 
                                 name = "password"
                                 required
-                                value = {this.state.password}
-                                onChange = {this.handlechange}/>
+                                value = {userDetails.password}
+                                onChange = {handlechange}/>
                             </div>
                             <div className = "p-1">
                                 <TextField
@@ -97,8 +95,8 @@ class SignIn extends React.Component{
                                 label = "Mobile Number" type = "tel" 
                                 name = "mobileNo"
                                 required
-                                values = {this.state.mobileno}
-                                onChange = {this.handlechange}/>
+                                values = {userDetails.mobileno}
+                                onChange = {handlechange}/>
                             </div>
                             <div className = "p-1">
                                 <TextField
@@ -106,8 +104,8 @@ class SignIn extends React.Component{
                                 label = "Company" type = "text" 
                                 name = "company"
                                 required
-                                value = {this.state.company}
-                                onChange = {this.handlechange}/>
+                                value = {userDetails.company}
+                                onChange = {handlechange}/>
                             </div>
                             <div className = "p-1">
                                 <Button
@@ -118,13 +116,14 @@ class SignIn extends React.Component{
                                     width : 225
                                 }}
                                 >Sign up</Button>
-                            </div>        
+                            </div>      
+                              
                         </form>
                     </div>
                 </div>
             </div>
         )
-    }
+
 }
 
 export default SignIn;

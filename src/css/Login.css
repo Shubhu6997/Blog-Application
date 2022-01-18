@@ -1,13 +1,7 @@
-
-.SignInPage{
+.LoginPage{
     text-align: center;
     justify-content: center;
     margin-top: 10px;
     padding: 20px;
-
- 
-}
-
-.google-sign-in{
-    padding: 10px;
+   
 }

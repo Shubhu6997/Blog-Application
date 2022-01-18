@@ -1,21 +1,31 @@
 import HomePage from "../img/HomePage.jpg"
-import { Link } from "react-router-dom";
 import "../css/Home.css";
+import Login from "./Login";
+import { useState } from "react";
+import SignIn from "./SignIn";
+import Button from '@mui/material/Button';
+
 function Home(){
+
+    const [state, setState] = useState(false);
+    
+    console.log(state);
+
+    const handleChange=()=>{
+        setState(!state);
+    }
+
     return(
         <div className = "container-fluid home">
-            <div>
+            <div className="left-container">
                 <h1 className = "text-center home-title">MAKE YOUR OWN BLOG WITH US</h1>
-                <h2 className = "text-center home-title">Lets Start!!!</h2>
+                <img className = "homepage" src = {HomePage} alt = "Home Page Background"/>
             </div>
-            <img className = "homepage" src = {HomePage} alt = "Home Page Background"/>
-            <div className = "text-center">
-                <button className = "btn btn-primary m-1">
-                    <Link to = "/login"><h5 className = "text-white">Login</h5></Link>
-                </button>
-                <button className = "btn btn-primary m-1">
-                    <Link to = "/sign-in"><h5 className = "text-white">Sign up</h5></Link>
-                </button>
+            <div className = "right-container text-center">
+                {state ? <SignIn/> : <Login/>} 
+                <Button onClick={handleChange}>
+                    {state ? "Back to Login" : "New User? Please click here to register."}
+                </Button>
             </div>
         </div>
     )

@@ -2,7 +2,6 @@ import Posts from "./Posts";
 import {BrowserRouter, Link, Route, Switch} from 'react-router-dom';
 import Home from "./Home";
 import About from "./About";
-import Login from "./Login";
 import SignIn from "./SignIn";
 import "../css/App.css";
 import AddPost from "./AddPost";
@@ -16,16 +15,16 @@ function App() {
     <div className = "container">
         <BrowserRouter>
           <div className = "navbar-top">
-                <div className = "">
+                <div>
                   <Link to = "/"><h6 className = "tab-name">Home</h6></Link>
                 </div>
-                <div className = "">
+                <div>
                   <Link to = "/posts"><h6 className = "tab-name">All Posts</h6></Link>
                 </div>
-                <div className = "">
+                <div>
                   <Link to = "/createPost"><h6 className = "tab-name">Create Post</h6></Link>
                 </div>
-                <div className = "">
+                <div>
                   <Link to = "/about"><h6 className = "tab-name">About US</h6></Link>
                 </div>
           </div>
@@ -34,8 +33,7 @@ function App() {
             <Route exact path = "/" component = {Home}/>
             <Route path = "/posts" component = {Posts}/> 
             <Route path = "/createPost" component = {AddPost}/>  
-            <Route path = "/about" component = {About}/>
-            <Route path = "/login" component = {Login}/>   
+            <Route path = "/about" component = {About}/>   
             <Route path = "/sign-in" component = {SignIn}/>       
           </Switch>
 

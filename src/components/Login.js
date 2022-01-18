@@ -1,32 +1,38 @@
-import React  from "react";
-import "../css/LoginPage.css";
+import React, {useState} from "react";
+import "../css/Login.css";
 import axios from "axios";
 import TextField from '@mui/material/TextField';
-import { Link } from "react-router-dom";
 import Button from '@mui/material/Button';
+import {GoogleLogin} from "react-google-login";
 
 
 
-class Login extends React.Component{
-    constructor(props){
-        super(props);
-        this.state = {
-            email : "",
-            password : ""
-        }
-    }
+function Login(){
 
-    loginUser = async() =>{
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const clientId = "748635581799-nqi94o0c5lmocfp50g9odfvts44hd3bh.apps.googleusercontent.com";
+
+    const onSuccess = (res) =>{
+        console.log("Login Success")
+    };
+
+    const onFailure = () =>{
+            console.log("Login Failure")
+    };
+    
+    const loginUser = async() =>{
         try{
             console.log("login method called")
             let {data} = await axios.post(`https://${process.env.REACT_APP_HOST_NAME}/users/login`,{
-                email : this.state.email,
-                password : this.state.password,
+                email : email,
+                password : password,
             });
             console.log(data);
 
             if(data.message === "Logged in Successfully"){
-                localStorage.setItem("username", this.state.email);
+                localStorage.setItem("username", email);
                 localStorage.setItem("userId", data.userId);
                 localStorage.setItem("name", data.name);
             }
@@ -37,7 +43,8 @@ class Login extends React.Component{
                 localStorage.removeItem("name");
             }    
 
-            this.setState({email : "", password : ""});
+            setEmail("");
+            setPassword("");
             alert(data.message);
 
         }catch(error){
@@ -46,31 +53,25 @@ class Login extends React.Component{
        
     }
 
-    handleChange = ({target : {name, value}}) =>{
-        this.setState({[name] : value});
-    }
-
-    hanldeSubmit = (event) =>{
+    const handleSubmit = (event) =>{
         event.preventDefault();
-        this.loginUser();
-        console.log(this.state);
-
+        loginUser();
     }
-    render(){
+
         return(
             <div className = "container-fluid">
                 <div className = "LoginPage d-flex">
                     <div>                 
-                        <h3>Login Page</h3>
-                        <form className = "" onSubmit = {this.hanldeSubmit}>
+                        <h3>Login</h3>
+                        <form className = "" onSubmit = {handleSubmit}>
                             <div className = "p-1">
                                 <TextField 
                                 variant = "outlined"
                                 label="Email"
                                 name = "email"
                                 required
-                                value = {this.state.email}
-                                onChange = {this.handleChange}/>
+                                value = {email}
+                                onChange = {(event)=>setEmail(event.target.value)}/>
                             </div>
                             <div className = "p-1">
                                 <TextField 
@@ -79,8 +80,8 @@ class Login extends React.Component{
                                 type = "password" 
                                 name = "password"
                                 required
-                                value = {this.state.password}
-                                onChange = {this.handleChange} />
+                                value = {password}
+                                onChange = {(event)=>setPassword(event.target.value)} />
                             </div>
                             <div className = "p-1">
                                 <Button 
@@ -91,17 +92,27 @@ class Login extends React.Component{
                                     width : 225
                                 }}
                                 >Login</Button>
-                            </div>
-                            <div>
-                                <Link to="/sign-in">New User? Please click here to register.</Link>
-                            </div>
+                            </div> 
                         </form>
+                        <div className="google-sign-in">  
+                        <GoogleLogin
+                            clientId={clientId}
+                            buttonText="Sign In with Google"
+                            onSuccess={onSuccess}
+                            onFailure={onFailure}
+                            cookiePolicy={'single_host_origin'}
+                            isSignedIn={true}
+                            style={{
+                                width : 225
+                            }}
+
+                         />
+                        </div>
                     </div>  
-                </div>
-               
+                </div>     
             </div>
         )
-    }
+    
 }
 
 export default Login;

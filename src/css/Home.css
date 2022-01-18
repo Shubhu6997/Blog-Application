@@ -1,6 +1,6 @@
 .home{
    display: flex;
-   flex-direction: column;
+   flex-direction: row;
   
 }
 
@@ -14,7 +14,17 @@
 
 }
 
-.home-title{
-   font-size: 4vw;
+
+.left-container, .right-container{
+   padding: 25px;
 }
+
+@media (max-width: 912px) {
+   .home{
+      display: flex;
+      flex-direction: column;
+
+   }
+}
+
 

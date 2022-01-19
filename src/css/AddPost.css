@@ -6,7 +6,18 @@
   
 }
 
-
 .add-post-button{
     padding: 10px;
+}
+
+.post-title,
+.post-body{
+    width: 750px; 
+}
+
+@media (max-width : 500px){
+    .post-title, 
+    .post-body{
+        width: 325px;
+    }
 }

@@ -83,6 +83,7 @@ class AddPost extends React.Component{
                 <form onSubmit = {this.handleSubmit}>
                     <div>
                         <TextField 
+                        className = "post-title"
                         label = "Title"
                         multiline
                         maxRows={2}
@@ -90,7 +91,6 @@ class AddPost extends React.Component{
                         value = {this.state.title}
                         onChange = {this.handleChange}
                         style = {{
-                            width : 750,
                             padding : "10px"
                         }}
                         />
@@ -98,13 +98,13 @@ class AddPost extends React.Component{
                     <div> 
                         <TextField 
                         label = "Body"
+                        className = "post-body"
                         multiline
                         rows={8}
                         name = "body"
                         value = {this.state.body}
                         onChange = {this.handleChange}
                         style = {{
-                            width : 750,
                             padding : "10px"
                         }}
                         />

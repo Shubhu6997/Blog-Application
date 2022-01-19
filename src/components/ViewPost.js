@@ -7,6 +7,7 @@ import  DeleteIcon  from "@material-ui/icons/Delete";
 import { Divider } from "@mui/material";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { IconButton } from "@mui/material";
+import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 
 
 
@@ -37,6 +38,10 @@ class ViewPost extends React.Component{
     }
 
     addComment = async()=>{
+        if(!localStorage.getItem("username")){
+            alert("Please login to add post");
+            return <Redirect to = "/"/>
+        }
         try{
             const {data} = await axios.post(`https://${process.env.REACT_APP_HOST_NAME}/comments`,{
              postId : Number(localStorage.getItem("postId")),
@@ -55,7 +60,8 @@ class ViewPost extends React.Component{
 
     deleteComment = async(id)=>{
         try{
-            console.log("delete Comments method is called", id);
+            console.log("deleteComment method is called", id);
+            
             let {data} = await axios.delete(`https://${process.env.REACT_APP_HOST_NAME}/comments/${id}`,{
                 data :{ username : localStorage.getItem("username")}
              });

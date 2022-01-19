@@ -5,7 +5,20 @@
    
 }
 
-.post-card{
-    border : 2px solid grey;
-    box-shadow: 2px 2px grey;
+.post-details{
+    margin: 10px;
+    padding: 5px;
+    box-shadow: 2px 2px 2px 2px lightsteelblue;
+    border-radius: 10px;
+}
+
+.post-details:hover{
+    background-color: seashell;
+}
+
+.post-details h3{
+    background-color: skyblue;
+    padding: 2px;
+    border-radius: 10px;
+    color: white;
 }

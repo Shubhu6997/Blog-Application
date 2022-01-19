@@ -113,42 +113,32 @@ class Posts extends Component{
                     return (
                     <div>
                         <div className = "m-3">
-                            <table className = "table table-striped table-bordered mt-2">
-                                <tbody>
-                                {this.state.posts.map((post)=>{
-                                    return(
-                                        <tr key = {post.id}>
-                                            <td>
-                                                <td><h3>{post.title}</h3></td>
-                                                <tr>
-                                                <td className = "p-2">{post.body}</td>
-                                                </tr>
-                                                
-                                                <div className="icon-group">
-                                                    <IconButton 
-                                                    onClick = {()=>this.viewAddPost(post, "view")}>
-                                                        <Link to = "/posts/viewpost"> 
-                                                            <VisibilityOutlinedIcon/>
-                                                        </Link>
-                                                    </IconButton>
+                            {this.state.posts.map((post)=>{
+                                return(
+                                    <div key = {post.id} className="post-details">
+                                        <h3>{post.title}</h3>
+                                        <p className = "p-2">{post.body}</p>
+                                        <div className="icon-group">
+                                            <IconButton 
+                                            onClick = {()=>this.viewAddPost(post, "view")}>
+                                                <Link to = "/posts/viewpost"> 
+                                                    <VisibilityOutlinedIcon/>
+                                                </Link>
+                                            </IconButton>
 
-                                                    <IconButton
-                                                    onClick = {()=>this.deletePost(post.id)}>
-                                                         <DeleteIcon/>
-                                                   </IconButton>
+                                            <IconButton
+                                            onClick = {()=>this.deletePost(post.id)}>
+                                                    <DeleteIcon/>
+                                            </IconButton>
 
-                                                    <IconButton 
-                                                    onClick = {()=>this.selectPostToUpdate(post)}>
-                                                       <EditTwoToneIcon/>
-                                                    </IconButton>
-
-                                                </div>
-                                            </td>
-                                        </tr>    
+                                            <IconButton 
+                                            onClick = {()=>this.selectPostToUpdate(post)}>
+                                                <EditTwoToneIcon/>
+                                            </IconButton>
+                                        </div>
+                                    </div>    
                                     );
                                 })}
-                                </tbody>
-                            </table>
                         </div> 
                     </div>
                 
